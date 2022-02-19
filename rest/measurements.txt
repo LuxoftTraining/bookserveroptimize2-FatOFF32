@@ -1,0 +1,62 @@
+{
+  "3. HashMap": {
+    "name": "3. HashMap",
+    "time": 64719977,
+    "callsCount": 8554,
+    "callsCountMeasured": 8039,
+    "latency": 8050,
+    "percent": 100.0,
+    "boost": "1",
+    "percentile50": 4952,
+    "percentile90": 7354,
+    "percentile99": 8114
+  },
+  "4. FastUtil": {
+    "name": "4. FastUtil",
+    "time": 62495254,
+    "callsCount": 8559,
+    "callsCountMeasured": 8133,
+    "latency": 7684,
+    "percent": 95.45,
+    "boost": "1.05",
+    "percentile50": 4744,
+    "percentile90": 7487,
+    "percentile99": 8129
+  },
+  "5. Cached with long hash": {
+    "name": "5. Cached with long hash",
+    "time": 12576619,
+    "callsCount": 8335,
+    "callsCountMeasured": 7844,
+    "latency": 1603,
+    "percent": 19.91,
+    "boost": "5.02",
+    "percentile50": 1840,
+    "percentile90": 2768,
+    "percentile99": 3834
+  },
+  "6. Cached with String->String and JSON": {
+    "name": "6. Cached with String->String and JSON",
+    "time": 14126309,
+    "callsCount": 8293,
+    "callsCountMeasured": 7815,
+    "latency": 1807,
+    "percent": 22.45,
+    "boost": "4.45",
+    "percentile50": 1833,
+    "percentile90": 2677,
+    "percentile99": 3981
+  },
+  "7. Fully pre-indexed": {
+    "name": "7. Fully pre-indexed",
+    "time": 28674919,
+    "callsCount": 8435,
+    "callsCountMeasured": 8041,
+    "latency": 3566,
+    "percent": 44.3,
+    "boost": "2.26",
+    "percentile50": 3228,
+    "percentile90": 6256,
+    "percentile99": 7965
+  }
+}

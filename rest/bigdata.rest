@@ -1,0 +1,205 @@
+
+###
+
+GET http://localhost:8080/books/random
+
+> {%
+   var path = "keywords7"; // CHANGE HERE TO TEST DIFFERENT ALGORITHMS
+   client.global.set("path", path);
+
+   var keywords=response.body.title.split(" ");
+   client.log(keywords)
+   client.global.set("title",keywords[0]);
+   client.global.set("name",keywords[2]);
+   client.global.set("surname",keywords[3]);
+
+   client.log("http://localhost:8080/books/"+path+"/"+keywords[0]);
+   client.log("http://localhost:8080/books/"+path+"/"+keywords[2]);
+   client.log("http://localhost:8080/books/"+path+"/"+keywords[3]);
+   client.log("http://localhost:8080/books/"+path+"/"+keywords[2]+"%20"
+          +keywords[3]);
+   client.log("http://localhost:8080/books/"+path+"/"+keywords[0]+"%20"
+          +keywords[3]);
+   client.log("http://localhost:8080/books/"+path+"/"+keywords[0]+"%20"
+          +keywords[3]+"%20"+keywords[2]);
+   client.log("http://localhost:8080/books/"+path+"/"+keywords[3]+"%20"
+          +keywords[2]+"%20"+keywords[0]);
+   client.log("http://localhost:8080/books/"+path+"/"+keywords[2]+"%20"
+          +keywords[3]+"%20"+keywords[0]);
+
+
+%}
+
+###
+
+GET http://localhost:8080/books/{{path}}/{{name}}
+
+> {%
+    client.test("check that we found right book", function() {
+        var title = client.global.get("title");
+        var len = response.body.length;
+        client.assert(response.status === 200, "Response status is not 200");
+        client.assert(len > 0, "Book with title "+title+" was not found");
+        client.assert(
+                response.body.filter(function(p) {
+                   return p.title.indexOf(title)>=0
+                }).length > 0,
+        "Book with title {{title}} was not found in the list of results");
+    });
+%}
+###
+
+GET http://localhost:8080/books/{{path}}/{{title}}
+
+> {%
+    client.test("check that we found right book", function() {
+        var title = client.global.get("title");
+        var len = response.body.length;
+        client.assert(response.status === 200, "Response status is not 200");
+        client.assert(len > 0, "Book with title "+title+" was not found");
+        client.assert(
+                response.body.filter(function(p) {
+                   return p.title.indexOf(title)>=0
+                }).length > 0,
+        "Book with title {{title}} was not found in the list of results");
+    });
+%}
+###
+
+GET http://localhost:8080/books/{{path}}/{{surname}}
+
+> {%
+    client.test("check that we found right book", function() {
+        var title = client.global.get("title");
+        var len = response.body.length;
+        client.assert(response.status === 200, "Response status is not 200");
+        client.assert(len > 0, "Book with title "+title+" was not found");
+        client.assert(
+                response.body.filter(function(p) {
+                   return p.title.indexOf(title)>=0
+                }).length > 0,
+        "Book with title {{title}} was not found in the list of results");
+    });
+%}
+###
+
+GET http://localhost:8080/books/{{path}}/{{title}}%20{{surname}}
+
+> {%
+    client.test("check that we found right book", function() {
+        var title = client.global.get("title");
+        var len = response.body.length;
+        client.assert(response.status === 200, "Response status is not 200");
+        client.assert(len > 0, "Book with title "+title+" was not found");
+        client.assert(
+                response.body.filter(function(p) {
+                   return p.title.indexOf(title)>=0
+                }).length > 0,
+        "Book with title {{title}} was not found in the list of results");
+    });
+%}
+
+###
+
+GET http://localhost:8080/books/{{path}}/{{title}}%20{{name}}
+
+> {%
+    client.test("check that we found right book", function() {
+        var title = client.global.get("title");
+        var len = response.body.length;
+        client.assert(response.status === 200, "Response status is not 200");
+        client.assert(len > 0, "Book with title "+title+" was not found");
+        client.assert(
+                response.body.filter(function(p) {
+                   return p.title.indexOf(title)>=0
+                }).length > 0,
+        "Book with title {{title}} was not found in the list of results");
+    });
+%}
+###
+
+GET http://localhost:8080/books/{{path}}/{{name}}%20{{title}}%20{{surname}}
+
+> {%
+    client.test("check that we found right book", function() {
+        var title = client.global.get("title");
+        var len = response.body.length;
+        client.assert(response.status === 200, "Response status is not 200");
+        client.assert(len > 0, "Book with title "+title+" was not found");
+        client.assert(
+                response.body.filter(function(p) {
+                   return p.title.indexOf(title)>=0
+                }).length > 0,
+        "Book with title {{title}} was not found in the list of results");
+    });
+%}
+###
+
+GET http://localhost:8080/books/{{path}}/{{title}}%20{{name}}%20{{surname}}
+
+> {%
+    client.test("check that we found right book", function() {
+        var title = client.global.get("title");
+        var len = response.body.length;
+        client.assert(response.status === 200, "Response status is not 200");
+        client.assert(len > 0, "Book with title "+title+" was not found");
+        client.assert(
+                response.body.filter(function(p) {
+                   return p.title.indexOf(title)>=0
+                }).length > 0,
+        "Book with title {{title}} was not found in the list of results");
+    });
+%}
+###
+
+GET http://localhost:8080/books/{{path}}/{{surname}}%20{{title}}%20{{name}}
+
+> {%
+    client.test("check that we found right book", function() {
+        var title = client.global.get("title");
+        var len = response.body.length;
+        client.assert(response.status === 200, "Response status is not 200");
+        client.assert(len > 0, "Book with title "+title+" was not found");
+        client.assert(
+                response.body.filter(function(p) {
+                   return p.title.indexOf(title)>=0
+                }).length > 0,
+        "Book with title {{title}} was not found in the list of results");
+    });
+%}
+###
+
+GET http://localhost:8080/books/{{path}}/{{surname}}%20{{name}}%20{{title}}
+
+> {%
+    client.test("check that we found right book", function() {
+        var title = client.global.get("title");
+        var len = response.body.length;
+        client.assert(response.status === 200, "Response status is not 200");
+        client.assert(len > 0, "Book with title "+title+" was not found");
+        client.assert(
+                response.body.filter(function(p) {
+                   return p.title.indexOf(title)>=0
+                }).length > 0,
+        "Book with title {{title}} was not found in the list of results");
+    });
+%}
+
+###
+
+GET http://localhost:8080/books/{{path}}/{{name}}%20{{title}}%20{{surname}}
+
+> {%
+    client.test("check that we found right book", function() {
+        var title = client.global.get("title");
+        var len = response.body.length;
+        client.assert(response.status === 200, "Response status is not 200");
+        client.assert(len > 0, "Book with title "+title+" was not found");
+        client.assert(
+                response.body.filter(function(p) {
+                   return p.title.indexOf(title)>=0
+                }).length > 0,
+        "Book with title {{title}} was not found in the list of results");
+    });
+%}
+

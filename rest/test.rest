@@ -1,0 +1,47 @@
+
+POST http://localhost:8080/books
+Content-Type: application/json
+
+{ "title": "Java by Vladimir Sonkin"}
+
+###
+
+POST http://localhost:8080/books
+Content-Type: application/json
+
+{ "title": "Java by Nikolai Hlebnikov"}
+
+###
+
+POST http://localhost:8080/books
+Content-Type: application/json
+
+{ "title": "Kotlin by Egor Rogov"}
+
+###
+
+GET http://localhost:8080/books/keywords4/Nikolai%20Java
+
+###
+
+GET http://localhost:8080/books/keywords4/Rogov%20Egor%20Kotlin
+
+###
+
+GET http://localhost:8080/books/keywords4/Java%20Nikolai
+
+###
+
+GET http://localhost:8080/books/keywords4/Egor%20Kotlin
+
+###
+
+GET http://localhost:8080/books/test
+
+###
+
+GET http://localhost:8080/measurements
+
+###
+
+#GET http://localhost:8080/measurements/clear
