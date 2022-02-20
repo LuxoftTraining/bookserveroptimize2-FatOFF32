@@ -28,4 +28,7 @@ public interface BookClient {
     @RequestMapping("keywords7/{keywordsString}")
     String getBookByTitlePreparedIndex(@PathVariable String keywordsString);
 
+    @RequestMapping("keywords8/{keywordsString}")
+    String getBookByTitleDenormalize(@PathVariable String keywordsString);
+
 }

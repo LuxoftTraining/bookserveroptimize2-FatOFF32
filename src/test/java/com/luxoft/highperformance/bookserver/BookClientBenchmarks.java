@@ -38,9 +38,12 @@ import java.util.concurrent.TimeUnit;
 @RunWith(SpringRunner.class)
 public class BookClientBenchmarks extends AbstractBenchmark {
 
-    String keywords1 = "Book83125";
-    String keywords2 = "AuthorName76100 AuthorSurname88148";
-    String keywords3 = "AuthorSurname88148 AuthorName76100 Book83125";
+    String keywords1 = "Java";
+    String keywords2 = "Junior Svoloch";
+    String keywords3 = "Java Junior Svoloch";
+//    String keywords1 = "Book83125";
+//    String keywords2 = "AuthorName76100 AuthorSurname88148";
+//    String keywords3 = "AuthorSurname88148 AuthorName76100 Book83125";
 
     public static BookController bookController;
     public static BookClient bookClient;
@@ -107,6 +110,14 @@ public class BookClientBenchmarks extends AbstractBenchmark {
         return bookClient.getBookByTitlePreparedIndex(keywords1)+
                 bookClient.getBookByTitlePreparedIndex(keywords2)+
                 bookClient.getBookByTitlePreparedIndex(keywords3);
+    }
+
+    @Benchmark
+    @OperationsPerInvocation(3)
+    public String BookDenormalize() {
+        return bookClient.getBookByTitleDenormalize(keywords1)+
+                bookClient.getBookByTitleDenormalize(keywords2)+
+                bookClient.getBookByTitleDenormalize(keywords3);
     }
 }
 

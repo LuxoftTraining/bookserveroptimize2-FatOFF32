@@ -340,6 +340,41 @@ public class BookController {
         }
     }
 
+    @Measure(value = "8. Denormalize FastUtil", warmup = 500)
+    @GetMapping(value = "keywords8/{keywordsString}",
+            produces = APPLICATION_JSON_VALUE)
+    public String getBookByTitleDenormalizeFastUtil(@PathVariable String keywordsString) {
+        String[] keywords = keywordsString.split(" ");
+
+        IntOpenHashSet bookIdxSet = null;
+        IntOpenHashSet booksWithKeywordSet = new IntOpenHashSet();
+        for (String keyword : keywords) {
+            if (!booksWithKeywordSet.isEmpty()) {
+                booksWithKeywordSet.clear();
+            }
+            Int2ObjectOpenHashMap<IntOpenHashSet> map = bookService.keywordMap3;
+            if (map.containsKey(keyword.hashCode())) {
+                booksWithKeywordSet.addAll(map.get(keyword.hashCode()));
+            }
+            if (bookIdxSet == null) {
+                bookIdxSet = booksWithKeywordSet;
+            } else {
+                bookIdxSet.retainAll(booksWithKeywordSet);
+            }
+        }
+
+        if (bookIdxSet == null) return "[]";
+
+        StringBuilder sb = new StringBuilder();
+        for (int idx: bookIdxSet) {
+            if (sb.length()>0) sb.append(", ");
+            sb.append("{\n\"id\": ").append(bookService.bookIds[idx]).append(",\n");
+            sb.append("\"title\": ").append("\"").append(bookService.getTitleByIndex(idx)).append("\"\n}");
+        }
+
+        return "["+sb+"]";
+    }
+
     @GetMapping
     public List<Book> getBooks() {
         return bookRepository.findAll();
@@ -352,6 +387,7 @@ public class BookController {
             bookService.initKeywords(book);
             bookService.initKeywords2(book);
             bookService.initKeywords3(book);
+            bookService.initKeywords4(book);
         }
     }
 

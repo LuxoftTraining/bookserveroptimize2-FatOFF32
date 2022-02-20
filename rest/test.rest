@@ -20,7 +20,15 @@ Content-Type: application/json
 
 ###
 
+GET http://localhost:8080/books/read-all
+
+###
+
 GET http://localhost:8080/books/keywords4/Nikolai%20Java
+
+###
+
+GET http://localhost:8080/books/keywords8/Nikolai%20Java
 
 ###
 
